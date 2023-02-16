@@ -41,7 +41,7 @@ struct Args {
         short,
         long,
         default_value = "sv-finder",
-        long_help = "output file(s) prefix"
+        long_help = "output file prefix"
     )]
     output_prefix: String,
    
@@ -57,7 +57,7 @@ struct Args {
 
     #[arg(
         long="distance-threshold",
-        default_value_t = 400,
+        default_value_t = 350,
         value_parser = clap::value_parser!(i32).range(1..),
         long_help = "maximum distance in nucleotids between two misaligned reads\nfor trying to assemble them together\n"
     )]

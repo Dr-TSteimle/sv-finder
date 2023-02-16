@@ -1,0 +1,6 @@
+/target
+*.bam
+*.bai
+*.json
+/test
+Cargo.lock
