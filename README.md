@@ -61,7 +61,7 @@ The algorithm is multi-threaded and written in rust :crab: for faster processing
 
 The output is a TSV file with the following columns:
 * Name of the cluster.
-* Genomic coordinates relatives to the reference and to the query (contig:reference_start-reference_stop|query_start-query_stop), the ranges are 1-based and inclusives.
+* Genomic coordinates relatives to the reference and to the query (contig:reference_start-reference_stop|query_start-query_stop), the ranges are 1-based and inclusive.
 * The [hgvs](https://varnomen.hgvs.org/recommendations/DNA/variant/complex/) unique variant identifier.
 * The assembled sequence.
 
