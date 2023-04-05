@@ -342,6 +342,14 @@ fn main() {
             
             if res.hgvs.is_some() {
                 writeln!(result_file, "{}", res.print_tsv_line()).unwrap();
+            } else {
+                let ranges = if let Some(ranges) = res.ranges {
+                    let ranges: Vec<String> = ranges.iter().map(|((c, rs, re), (ss, se))| format!("{}:{}-{}|{}-{}", c, rs, re, ss, se)).collect();
+                    ranges.join(";")
+                } else {
+                    "".to_string()
+                };
+                writeln!(result_file, "{}\t{}\t\t{}", name, ranges, sequence.as_string()).unwrap();
             }
         });
 
@@ -511,7 +519,7 @@ pub fn parse_cytoband(path: &str) -> Vec<(String, i32)> {
             }
         }
     }
-    results   
+    results
 }
 
 pub fn hgvs_delins(
