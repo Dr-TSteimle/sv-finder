@@ -1,4 +1,5 @@
-(https://github.com/Dr-TSteimle/sv-finder/blob/main/.github/workflows/rust.yml/badge.svg)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Dr-TSteimle/sv-finder/CI?label=build)
+
 # sv-finder :mag_right: :dna:
 
 Software for genomic structural variant detection and description. Short reads and long reads from panel or whole genome sequencing can be used.
