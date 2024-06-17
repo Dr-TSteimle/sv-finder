@@ -1,4 +1,5 @@
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Dr-TSteimle/sv-finder/CI?label=build)
+
+![example workflow](https://github.com/Dr-TSteimle/sv-finder/actions/workflows/rust.yml/badge.svg)
 
 # sv-finder :mag_right: :dna:
 
