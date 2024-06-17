@@ -31,7 +31,7 @@ Options:
                                             	- hg38: https://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cytoBandIdeo.txt.gz
       --distance-threshold <DISTANCE_THRE>  maximum distance in nucleotids between two misaligned reads
                                             for trying to assemble them together
-                                             [default: 400]
+                                             [default: 350]
       --min-overlapping <MIN_OVERLAPPING>   minimum overlapping length (nt) required for assembling
                                             two reads together
                                              [default: 50]

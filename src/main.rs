@@ -251,7 +251,6 @@ fn main() {
         .into_iter()
         .filter(|x| x.1.len() >= min_reads)
         .collect();
-
     
     clusters
         .sort_by(|a,b| b.1.len().cmp(&a.1.len()));
