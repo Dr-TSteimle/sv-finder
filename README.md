@@ -46,6 +46,11 @@ Options:
                                              [default: 3]
       --min-reads <MIN_READS>               minimum reads per cluster
                                              [default: 10]
+
+  -r, --repeat-masker-path <REPEAT_MASKER>
+      repeat masker gz file path from UCSC (rmsk.txt.gz)
+            - hg19: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/rmsk.txt.gz
+            - hg38: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/rmsk.txt.gz
   -h, --help                                Print help (see more with '--help')
   -V, --version                             Print version
   ```
