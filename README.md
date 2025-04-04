@@ -16,6 +16,13 @@ wget https://github.com/Dr-TSteimle/sv-finder/releases/download/1.0.0/sv-finder
 ```
 chmod +x sv-finder
 ```
+
+You can also install the latest version directly from the GitHub repository using `cargo`:
+
+```bash
+cargo install --git https://github.com/Dr-TSteimle/sv-finder
+```
+
 ### :fire: Usage
 ```
 ./sv-finder -h
