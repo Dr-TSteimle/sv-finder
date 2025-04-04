@@ -1,22 +1,17 @@
-// Copyright (c) <2023> <Thomas Steimlé>
+// Copyright (C) 2025 [Thomas Steimlé]
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
 
 use bam::record::tags::TagValue::String as BamString;
 use desc_sequence::*;
@@ -33,7 +28,7 @@ use std::{
 };
 
 extern crate rand;
-use rand::{seq::SliceRandom, thread_rng};
+use rand::{seq::SliceRandom, rng};
 
 use clap::Parser;
 #[derive(Parser, Debug)]
@@ -483,7 +478,7 @@ pub fn rec_merger(
             }
             None => match n_retry {
                 0 => seqs.reverse(),
-                _ => seqs.shuffle(&mut thread_rng()),
+                _ => seqs.shuffle(&mut rng()),
             },
         }
         n_retry += 1;
@@ -497,11 +492,12 @@ pub fn rec_merger(
     merged
 }
 
+type FullRange = ((String, i32, i32), (i32, i32));
 #[derive(Debug, Clone)]
 pub struct Result {
     pub name: String,
     pub sequence: String,
-    pub ranges: Option<Vec<((String, i32, i32), (i32, i32))>>,
+    pub ranges: Option<Vec<FullRange>>,
     pub hgvs: Option<Vec<String>>,
     pub on_repeat: Option<bool>,
 }
@@ -519,8 +515,8 @@ impl Result {
 
     pub fn align_bwa(
         &mut self,
-        mut ranges: Vec<((String, i32, i32), (i32, i32))>,
-        centro_pos: &Vec<(String, i32)>,
+        mut ranges: Vec<FullRange>,
+        centro_pos: &[(String, i32)],
     ) {
         ranges.sort_by(|a, b| a.1 .0.cmp(&b.1 .0));
 
@@ -530,10 +526,10 @@ impl Result {
         }
     }
 
-    pub fn hgvs(&mut self, centro_pos: &Vec<(String, i32)>) {
+    pub fn hgvs(&mut self, centro_pos: &[(String, i32)]) {
         if let Some(ranges) = self.ranges.clone() {
             if ranges.len() >= 2 {
-                let mut lag_ranges: Option<&((String, i32, i32), (i32, i32))> = None;
+                let mut lag_ranges: Option<&FullRange> = None;
                 let mut hgvs: Vec<String> = Vec::new();
                 for range in ranges.iter() {
                     if let Some(a_range) = lag_ranges {
@@ -642,6 +638,7 @@ pub fn parse_cytoband(path: &str) -> Vec<(String, i32)> {
     results
 }
 
+#[allow(clippy::too_many_arguments)]
 pub fn hgvs_delins(
     a_contig: String,
     a_pos: i32,
