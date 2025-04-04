@@ -10,7 +10,7 @@ Software for genomic structural variant detection and description. Short reads a
 
 1. Download the latest release:
 ```
-wget https://github.com/Dr-TSteimle/sv-finder/releases/download/1.0.0/sv-finder
+wget https://github.com/Dr-TSteimle/sv-finder/releases/download/1.1.0/sv-finder
 ```
 2. Make the file executable:
 ```
