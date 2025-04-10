@@ -64,7 +64,7 @@ Options:
 sv-finder minimal needed parameters are :
 * A sorted BAM file with it's corresponding BAI index file in the same directory.
 * The reference FASTA file used for alignement.
-* A cytoband TSV file with coordinates from the same reference file
+* A cytoband TSV file with coordinates from the same reference file (your should decompress and then recompress the file with bgzip).
     * For hg19 you can download it from: https://hgdownload.cse.ucsc.edu/goldenpath/hg19/database/cytoBandIdeo.txt.gz
     * And for hg38: https://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cytoBandIdeo.txt.gz
 
