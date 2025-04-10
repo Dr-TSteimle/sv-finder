@@ -3,7 +3,7 @@
 
 # sv-finder :mag_right: :dna:
 
-Software for genomic structural variant detection and description. Short reads and long reads from panel or whole genome sequencing can be used.
+Software for genomic structural variant detection and description.
 
 ## Quickstart
 ### :sparkles: Installation
